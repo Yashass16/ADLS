@@ -387,8 +387,7 @@ export default function LandingPage() {
               screening capabilities?
             </h2>
             <p className="text-[#d6e3ff] text-xl mb-12 max-w-2xl mx-auto font-light">
-              Join over 40 medical centers leveraging ALDS to provide
-              life-saving diagnostics in underserved communities.
+              
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
