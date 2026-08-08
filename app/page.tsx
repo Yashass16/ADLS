@@ -1,4 +1,4 @@
-import Link from "next/link";
+git addimport Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   description:
     "Empowering rural hospitals with AI-driven chest X-ray analysis for faster, more accurate diagnosis. Bridges the gap in radiologist availability.",
 };
+
+interface WorkflowStep {
+  num: string;
+  title: string;
+  desc: string;
+  badges?: string[];
+  progress?: boolean;
+  cta?: boolean;
+}
 
 export default function LandingPage() {
   return (
@@ -87,13 +96,6 @@ export default function LandingPage() {
                 >
                   Request a Demo
                 </Link>
-                <button
-                  className="bg-white border-b-2 border-[#005db6]/20 text-[#2b3437] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#f1f4f6] transition-all flex items-center justify-center gap-2"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  <span className="material-symbols-outlined">clinical_notes</span>
-                  View Whitepaper
-                </button>
               </div>
             </div>
 
@@ -251,7 +253,7 @@ export default function LandingPage() {
               </div>
 
               <div className="md:w-2/3 space-y-12">
-                {[
+                {([
                   {
                     num: "01",
                     title: "Upload Scan",
@@ -270,7 +272,7 @@ export default function LandingPage() {
                     desc: "Receive a structured clinical report ready for sign-off. Integration with existing EMR/EHR systems ensures the patient record is updated automatically.",
                     cta: true,
                   },
-                ].map((step) => (
+                ] as WorkflowStep[]).map((step) => (
                   <div
                     key={step.num}
                     className="bg-white p-12 rounded-3xl flex flex-col md:flex-row gap-10 items-start shadow-sm"
