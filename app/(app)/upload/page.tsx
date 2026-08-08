@@ -227,7 +227,7 @@ export default function UploadPage() {
           className="text-[10px] font-bold uppercase tracking-widest text-[#586064]"
           style={{ fontFamily: "Inter, sans-serif" }}
         >
-          AI Engine: Online (v2.4.1)
+          Screening Engine: Online (v2.4.1)
         </span>
       </div>
     </div>

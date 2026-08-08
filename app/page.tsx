@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import LandingNav from "@/components/layout/LandingNav";
 
 export const metadata: Metadata = {
   title: "ALDS – Clinical Precision In Every Screening",
@@ -18,7 +19,7 @@ interface WorkflowStep {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#f8f9fa] font-[Inter,sans-serif] text-[#2b3437]">
+    <div className="min-h-screen bg-[#f8f9fa] font-[Inter,sans-serif] text-[#2b3437] scroll-smooth">
       {/* ─── Top Navigation ─── */}
       <header className="w-full top-0 sticky z-50 bg-[#f8f9fa]">
         <nav className="flex justify-between items-center px-12 py-6 max-w-[1440px] mx-auto">
@@ -28,39 +29,14 @@ export default function LandingPage() {
           >
             ALDS
           </div>
-          <div className="hidden md:flex gap-10">
-            <a
-              href="#platform"
-              className="font-bold text-sm tracking-tight text-[#005db6] border-b-2 border-[#005db6] pb-1"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              Platform
-            </a>
-            {["Features", "Workflow", "Security"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="font-bold text-sm tracking-tight text-[#586064] hover:text-[#005db6] transition-colors"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
+          <LandingNav />
           <div className="flex items-center gap-6">
             <Link
-              href="/login"
-              className="font-bold text-sm tracking-tight text-[#586064] hover:text-[#2b3437] transition-colors"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              Login
-            </Link>
-            <Link
-              href="/login"
+              href="#request-demo"
               className="bg-[#005db6] hover:bg-[#0051a1] text-[#f6f7ff] px-6 py-3 rounded-md font-bold text-sm tracking-tight shadow-sm transition-all"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
-              Request Demo
+              Watch Demo Video
             </Link>
           </div>
         </nav>
@@ -90,11 +66,18 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/login"
+                  href="#request-demo"
                   className="clinical-gradient text-[#f6f7ff] px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all text-center"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
-                  Request a Demo
+                  Watch Demo Video
+                </Link>
+                <Link
+                  href="#workflow"
+                  className="px-8 py-4 rounded-lg font-bold text-lg border border-[#abb3b7]/25 text-[#2b3437] hover:border-[#005db6] hover:text-[#005db6] transition-all text-center bg-white/70 backdrop-blur"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  View Workflow
                 </Link>
               </div>
             </div>
@@ -129,10 +112,10 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <p className="text-[10px] font-bold text-[#005db6] tracking-widest uppercase">
-                        AI Analysis Engine
+                        Screening Analysis
                       </p>
                       <p className="text-sm font-bold text-[#2b3437]">
-                        Processing DICOM-2384...
+                        Processing DICOM-2384 for review...
                       </p>
                     </div>
                   </div>
@@ -187,8 +170,8 @@ export default function LandingPage() {
               {[
                 {
                   icon: "neurology",
-                  title: "AI-Powered Accuracy",
-                  desc: "Utilizing deep learning models trained on 1.2M clinical datasets to detect pulmonary abnormalities with 99.4% sensitivity.",
+                  title: "Model-Assisted Screening",
+                  desc: "Uses image-analysis cues to highlight potential abnormalities for clinician review, rather than replacing medical judgment.",
                 },
                 {
                   icon: "security",
@@ -197,8 +180,8 @@ export default function LandingPage() {
                 },
                 {
                   icon: "hub",
-                  title: "Zero Radiologist Needed",
-                  desc: "Designed to function autonomously in triage scenarios, providing immediate screening results where specialists are unavailable.",
+                  title: "Radiologist Verification",
+                  desc: "Designed to assist triage and reporting, with final sign-off required from a radiologist or qualified clinician.",
                 },
               ].map((card) => (
                 <div
@@ -242,8 +225,8 @@ export default function LandingPage() {
                 </h2>
                 <p className="text-[#586064] text-lg mb-8">
                   From data ingestion to clinical reporting in under 120
-                  seconds. We&apos;ve eliminated the friction in lung disease
-                  screening.
+                  seconds. We&apos;ve reduced friction in lung disease screening
+                  while keeping final verification with the clinician.
                 </p>
                 <div className="rounded-2xl bg-[#0c0f10] w-full aspect-[4/3] flex items-center justify-center shadow-lg">
                   <span className="material-symbols-outlined text-[#586064] text-8xl opacity-40">
@@ -269,7 +252,7 @@ export default function LandingPage() {
                   {
                     num: "03",
                     title: "Clinical Review & Report",
-                    desc: "Receive a structured clinical report ready for sign-off. Integration with existing EMR/EHR systems ensures the patient record is updated automatically.",
+                    desc: "Receive a structured clinical report ready for sign-off. The final decision stays with the radiologist, and the record can then be updated in EMR/EHR systems.",
                     cta: true,
                   },
                 ] as WorkflowStep[]).map((step) => (
@@ -309,7 +292,7 @@ export default function LandingPage() {
                         <div className="p-4 bg-[#f1f4f6] rounded-xl">
                           <div className="flex justify-between items-center mb-2">
                             <span className="text-xs font-bold uppercase tracking-tighter">
-                              Diagnostic Confidence
+                              Screening Confidence
                             </span>
                             <span className="text-xs font-bold text-[#005db6]">98.2%</span>
                           </div>
@@ -323,7 +306,7 @@ export default function LandingPage() {
                           href="/reports"
                           className="text-[#005db6] font-bold flex items-center gap-2 hover:underline"
                         >
-                          Download Sample Report
+                          Download Sample Report for Verification
                           <span className="material-symbols-outlined text-sm">download</span>
                         </Link>
                       )}
@@ -335,8 +318,63 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* ─── Security ─── */}
+        <section id="security" className="py-28 bg-[#f8f9fa]">
+          <div className="max-w-[1440px] mx-auto px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-4">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#d6e3ff] text-[#00519f] text-[10px] font-bold uppercase tracking-[0.2em] mb-5">
+                  Security & Trust
+                </span>
+                <h2
+                  className="text-5xl font-extrabold tracking-tight mb-5"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  Built for clinical environments
+                </h2>
+                <p className="text-[#586064] text-lg leading-relaxed max-w-xl">
+                  The interface is designed to make the presentation feel polished while also
+                  communicating the three things hospitals care about most: security, clarity,
+                  and auditability. It supports clinicians rather than replacing them.
+                </p>
+              </div>
+              <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: "Encrypted by default",
+                    desc: "Every scan is shown as protected clinical data with secure transport and access boundaries.",
+                    icon: "lock",
+                  },
+                  {
+                    title: "Audit-ready",
+                    desc: "Activity, review, and report actions are represented in a way that supports compliance demos.",
+                    icon: "fact_check",
+                  },
+                  {
+                    title: "Role-based workflow",
+                    desc: "The sidebar and app pages separate scan intake, review, reporting, and administration.",
+                    icon: "admin_panel_settings",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="bg-white p-8 rounded-2xl editorial-shadow border border-[#f1f4f6]">
+                    <div className="w-14 h-14 rounded-xl bg-[#d6e3ff] text-[#005db6] flex items-center justify-center mb-6">
+                      <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
+                        {item.icon}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3" style={{ fontFamily: "Manrope, sans-serif" }}>
+                      {item.title}
+                    </h3>
+                    <p className="text-[#586064] leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ─── Final CTA ─── */}
-        <section className="py-32 relative overflow-hidden">
+        <section id="request-demo" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 clinical-gradient opacity-95" />
           <div className="absolute -bottom-40 -left-20 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px]" />
           <div className="max-w-[1440px] mx-auto px-12 relative z-10 text-center">
@@ -358,8 +396,15 @@ export default function LandingPage() {
                 className="bg-white text-[#005db6] px-10 py-5 rounded-xl font-extrabold text-xl shadow-2xl hover:scale-[1.02] transition-all"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Get Started
+                Sign In
               </Link>
+              <a
+                href="#workflow"
+                className="bg-transparent border-2 border-[#f6f7ff]/30 text-[#f6f7ff] px-10 py-5 rounded-xl font-extrabold text-xl hover:bg-white/10 transition-all"
+                style={{ fontFamily: "Manrope, sans-serif" }}
+              >
+                See Workflow
+              </a>
               <button
                 className="bg-transparent border-2 border-[#f6f7ff]/30 text-[#f6f7ff] px-10 py-5 rounded-xl font-extrabold text-xl hover:bg-white/10 transition-all"
                 style={{ fontFamily: "Manrope, sans-serif" }}
@@ -382,7 +427,7 @@ export default function LandingPage() {
               ALDS
             </div>
             <p className="text-xs tracking-widest uppercase text-[#586064]">
-              © 2024 ALDS Advanced Lung Disease Screening. Clinical Precision Framework.
+              © 2026 ALDS Advanced Lung Disease Screening. Clinical Precision Framework.
             </p>
           </div>
           <div className="flex flex-wrap md:justify-end gap-x-8 gap-y-4">

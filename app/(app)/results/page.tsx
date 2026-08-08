@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Diagnostic Analysis Results – ALDS",
-  description: "AI-powered diagnostic inference for patient chest X-ray screenings.",
+  description: "Model-assisted screening summary for patient chest X-ray review with clinician verification.",
 };
 
 const confidenceBars = [
@@ -40,7 +40,7 @@ export default function ResultsPage() {
           </div>
           <div className="flex items-center gap-2 text-[#586064] text-sm bg-[#f1f4f6] px-4 py-2 rounded-full">
             <span className="material-symbols-outlined text-[#005db6] text-base">verified_user</span>
-            AI Model v2.4.1 (Clinical Beta)
+            Screening Model v2.4.1 (Clinical Beta)
           </div>
         </div>
 
@@ -134,10 +134,10 @@ export default function ResultsPage() {
                   className="text-lg font-bold text-[#2b3437] mb-1"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
-                  Diagnostic Inference
+                  Screening Summary
                 </h2>
                 <p className="text-[#586064] text-sm">
-                  Automated classification based on visual biomarkers.
+                  Automated cues to support review, not a final diagnosis.
                 </p>
               </div>
 
@@ -158,7 +158,7 @@ export default function ResultsPage() {
                 ))}
               </div>
 
-              {/* AI Recommendation */}
+              {/* Model Summary */}
               <div className="bg-white border-l-4 border-[#005db6] p-6 rounded-r-lg space-y-3">
                 <div className="flex items-center gap-2 text-[#005db6]">
                   <span
@@ -167,12 +167,12 @@ export default function ResultsPage() {
                   >
                     lightbulb
                   </span>
-                  <span className="text-xs font-bold uppercase tracking-widest">AI Recommendation</span>
+                  <span className="text-xs font-bold uppercase tracking-widest">Model Summary</span>
                 </div>
                 <p className="text-sm text-[#2b3437] leading-relaxed italic">
-                  &ldquo;Visual artifacts in the lower right lobe suggest focal consolidation consistent
-                  with bacterial pneumonia. Immediate clinical correlation and potential antibiotic
-                  intervention recommended. Secondary signs of mild lung congestion observed.&rdquo;
+                  &ldquo;Visual patterns in the lower right lobe suggest focal consolidation consistent
+                  with bacterial pneumonia. Immediate clinical correlation is recommended, and the
+                  final interpretation should be verified by a radiologist before reporting.&rdquo;
                 </p>
               </div>
             </section>
@@ -184,7 +184,7 @@ export default function ResultsPage() {
                 className="w-full clinical-gradient text-[#f6f7ff] py-4 rounded-lg font-bold text-sm tracking-wide shadow-lg hover:scale-[1.01] active:scale-[0.98] transition-all text-center"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Verify Analysis
+                Send for Radiologist Review
               </Link>
               <button
                 className="w-full border border-[#005db6]/30 bg-transparent text-[#005db6] py-4 rounded-lg font-bold text-sm tracking-wide hover:bg-[#005db6]/5 transition-colors"

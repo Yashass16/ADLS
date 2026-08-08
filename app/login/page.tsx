@@ -2,12 +2,36 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showErrors, setShowErrors] = useState(false);
+
+  const passwordRules = useMemo(
+    () => [
+      { label: "At least 8 characters", passed: password.length >= 8 },
+      { label: "One uppercase letter", passed: /[A-Z]/.test(password) },
+      { label: "One lowercase letter", passed: /[a-z]/.test(password) },
+      { label: "One number", passed: /\d/.test(password) },
+      { label: "One special character", passed: /[^A-Za-z0-9]/.test(password) },
+    ],
+    [password],
+  );
+
+  const isEmailValid = /[^\s@]+@[^\s@]+\.[^\s@]+/.test(email);
+  const isPasswordValid = passwordRules.every((rule) => rule.passed);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setShowErrors(true);
+
+    if (!isEmailValid || !isPasswordValid) {
+      return;
+    }
+
     router.push("/upload");
   };
 
@@ -67,11 +91,17 @@ export default function LoginPage() {
                 Institutional Email
               </label>
               <input
-                className="w-full px-0 py-3 bg-white border-0 border-b border-[#abb3b7]/20 focus:outline-none focus:border-[#005db6] text-[#2b3437] text-sm transition-all placeholder:text-[#737c7f]/40"
+                className={`w-full px-0 py-3 bg-white border-0 border-b focus:outline-none text-[#2b3437] text-sm transition-all placeholder:text-[#737c7f]/40 ${showErrors && !isEmailValid ? "border-red-400 focus:border-red-500" : "border-[#abb3b7]/20 focus:border-[#005db6]"}`}
                 id="email"
                 placeholder="clinician@citygeneral.hosp"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
               />
+              {showErrors && !isEmailValid && (
+                <p className="text-xs text-red-600">Enter a valid institutional email address.</p>
+              )}
             </div>
 
             {/* Password */}
@@ -84,28 +114,57 @@ export default function LoginPage() {
                 Secure Password
               </label>
               <input
-                className="w-full px-0 py-3 bg-white border-0 border-b border-[#abb3b7]/20 focus:outline-none focus:border-[#005db6] text-[#2b3437] text-sm transition-all placeholder:text-[#737c7f]/40"
+                className={`w-full px-0 py-3 bg-white border-0 border-b focus:outline-none text-[#2b3437] text-sm transition-all placeholder:text-[#737c7f]/40 ${showErrors && !isPasswordValid ? "border-red-400 focus:border-red-500" : "border-[#abb3b7]/20 focus:border-[#005db6]"}`}
                 id="password"
                 placeholder="••••••••••••"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
               />
+              <div className="pt-2 space-y-2">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-[#586064]">
+                  Password requirements
+                </p>
+                <div className="grid gap-1.5">
+                  {passwordRules.map((rule) => (
+                    <div key={rule.label} className="flex items-center gap-2 text-xs">
+                      <span
+                        className={`w-2 h-2 rounded-full ${rule.passed ? "bg-green-500" : "bg-[#abb3b7]"}`}
+                      />
+                      <span className={rule.passed ? "text-[#2b3437]" : "text-[#586064]"}>
+                        {rule.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[11px] text-[#586064] leading-relaxed">
+                  Use a mix of uppercase, lowercase, numbers, and special characters. That keeps the login demo realistic and stronger.
+                </p>
+              </div>
             </div>
 
             {/* CTA */}
             <button
               type="submit"
-              className="w-full py-4 clinical-gradient text-[#f6f7ff] font-semibold text-sm rounded-lg shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+              className="w-full py-4 clinical-gradient text-[#f6f7ff] font-semibold text-sm rounded-lg shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+              disabled={!isEmailValid || !isPasswordValid}
             >
-              Authenticate Session
+              Sign In
               <span className="material-symbols-outlined text-lg">lock_open</span>
             </button>
           </form>
 
           {/* Help */}
           <div className="pt-2 flex justify-center">
-            <button className="text-[0.6875rem] font-semibold text-[#586064] uppercase tracking-widest hover:text-[#005db6] transition-colors">
-              Reset Terminal Credentials
-            </button>
+            <div className="text-center space-y-2">
+              <button className="text-[0.6875rem] font-semibold text-[#586064] uppercase tracking-widest hover:text-[#005db6] transition-colors">
+                Not registered? Request account creation
+              </button>
+              <div className="text-[0.625rem] text-[#737c7f]">
+                Sign in with your institutional account to continue.
+              </div>
+            </div>
           </div>
         </section>
 

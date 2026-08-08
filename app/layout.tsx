@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "ALDS – Advanced Lung Disease Screening",
   description:
-    "AI-powered chest X-ray analysis for faster, more accurate diagnosis. Empowering rural hospitals with clinical-grade screening.",
+    "Decision-support chest X-ray screening for faster review with radiologist verification. Built for clinical-grade use in underserved hospitals.",
 };
 
 export default function RootLayout({
