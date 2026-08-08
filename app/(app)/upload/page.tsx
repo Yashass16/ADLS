@@ -220,16 +220,6 @@ export default function UploadPage() {
         </section>
       </div>
 
-      {/* Floating AI Status */}
-      <div className="fixed bottom-6 right-8 glass-panel border border-white px-4 py-2 rounded-full shadow-lg flex items-center gap-3">
-        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-        <span
-          className="text-[10px] font-bold uppercase tracking-widest text-[#586064]"
-          style={{ fontFamily: "Inter, sans-serif" }}
-        >
-          Screening Engine: Online (v2.4.1)
-        </span>
-      </div>
     </div>
   );
 }

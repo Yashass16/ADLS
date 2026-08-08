@@ -69,14 +69,14 @@ export default function SideNav() {
           className="flex items-center gap-3 px-3 py-2 text-[#586064] hover:text-[#005db6] text-[10px] font-semibold uppercase tracking-widest transition-colors"
         >
           <span className="material-symbols-outlined text-lg">help</span>
-          <span>Help Center</span>
+          <span>Support</span>
         </Link>
         <Link
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 text-[#586064] hover:text-[#005db6] text-[10px] font-semibold uppercase tracking-widest transition-colors"
+          href="/login"
+          className="flex items-center gap-3 px-3 py-2 text-[#9f403d] hover:text-[#752121] text-[10px] font-semibold uppercase tracking-widest transition-colors"
         >
-          <span className="material-symbols-outlined text-lg">description</span>
-          <span>Documentation</span>
+          <span className="material-symbols-outlined text-lg">logout</span>
+          <span>Sign Out</span>
         </Link>
       </div>
     </aside>
