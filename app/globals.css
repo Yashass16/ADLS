@@ -61,9 +61,9 @@
   --color-on-error-container: #752121;
 
   /* Typography */
-  --font-headline: 'Manrope', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-label: 'Inter', sans-serif;
+  --font-headline: var(--font-manrope), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-label: var(--font-inter), sans-serif;
 
   /* Border Radius */
   --radius: 0.125rem;
@@ -140,7 +140,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   background-color: #f8f9fa;
   color: #2b3437;
   -webkit-font-smoothing: antialiased;
@@ -148,5 +148,5 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font-manrope), sans-serif;
 }
