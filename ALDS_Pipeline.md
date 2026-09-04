@@ -1,9 +1,78 @@
 # ALDS — Pipeline Overview
 **Advanced Lung Disease Screening**
 
+
+
 ALDS helps doctors screen chest X-rays using AI. The AI finds potential lung problems. A doctor reviews and signs off.
 
 ---
+
+                 ALDS — Advanced Lung Disease Screening
+                         System Pipeline
+
+ ┌─────────────┐
+ │ Clinician   │
+ │ / Hospital  │
+ └──────┬──────┘
+        │
+        ▼
+ ┌─────────────────┐
+ │ Upload / Receive│
+ │ DICOM / X-ray   │
+ └────────┬────────┘
+          │
+          ▼
+ ┌─────────────────┐
+ │ Input Validation │
+ │ Patient ID      │
+ │ Format / Quality│
+ └────────┬────────┘
+          │
+          ▼
+ ┌─────────────────┐
+ │ Preprocessing   │
+ │ Resize / Normalize│
+ │ Quality Check   │
+ └────────┬────────┘
+          │
+          ▼
+ ┌─────────────────────────┐
+ │ AI Inference Service    │
+ │ Lung Disease Model      │
+ │ PyTorch / ML API        │
+ └───────────┬─────────────┘
+             │
+        ┌────┴─────┐
+        ▼          ▼
+ ┌────────────┐ ┌──────────────┐
+ │ Prediction │ │ Explainability│
+ │ Probability│ │ Grad-CAM     │
+ │ / Findings │ │ Heatmap      │
+ └──────┬─────┘ └──────┬───────┘
+        └──────┬───────┘
+               ▼
+       ┌────────────────┐
+       │ Results Store  │
+       │ PostgreSQL     │
+       │ Object Storage │
+       └───────┬────────┘
+               │
+               ▼
+       ┌────────────────┐
+       │ Radiologist    │
+       │ Review         │
+       │ Accept / Edit  │
+       └───────┬────────┘
+               │
+               ▼
+       ┌────────────────┐
+       │ Final Report   │
+       │ PDF / EHR/PACS │
+       └───────┬────────┘
+               ▼
+          ┌──────────┐
+          │ Archive  │
+          └──────────┘
 
 ## 1. Workflow
 
